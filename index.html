@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Todoアプリ</title>
@@ -10,8 +11,7 @@
   <div id="app">
     <h1>チュートリアルToDoリスト</h1>
     <label v-for="label in options">
-      <input type="radio" v-model="current" v-bind:value="label.value">{{ label.label }} </label>
-      （{{ computedTodos.length }} 件を表示）
+      <input type="radio" v-model="status" v-bind:value="label.value">{{ label.label }} </label> （{{ computedTodos.length }} 件を表示）
     <table>
       <thead v-pre>
         <tr>
@@ -26,17 +26,17 @@
           <th>{{ item.id }}</th>
           <td>{{ item.comment }}</td>
           <td class="state">
-            <button v-on:click="doChangeState(item)"> {{ labels[item.state] }} </button>
+            <button v-on:click="ChangeState(item)"> {{ labels[item.state] }} </button>
           </td>
           <td class="button">
-            <button v-on:click="doRemove(item)"> 削除 </button>
+            <button v-on:click="Remove(item)"> 削除 </button>
           </td>
         </tr>
       </tbody>
     </table>
     <h2>新しい作業の追加</h2>
-    <form class="add-form" v-on:submit.prevent="doAdd">
-      コメント <input type="text" ref="comment">
+    <form class="add-form" v-on:submit.prevent="Add">
+      コメント <input type="text" v-model="comment">
       <button type="submit">追加</button>
     </form>
   </div>
